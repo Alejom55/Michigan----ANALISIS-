@@ -22,8 +22,45 @@ def Mostrar_ZigZag(matriz,flag=True,n=0):
             flag=True
         n+=1
 
+def ZigZag_recursivo(matriz,fila,columna, flag = True, lista= []):
+    #print("soy len",len(matriz))
+    #print("flag: ", flag)
+    #print("fila", fila)
+    #print("Columna:", columna)
+    #print(len(matriz[columna]))
+    #print(len(matriz[0])) = 3
+    if columna == (len(matriz[0]) -1):
+        return lista
+    
+    if flag:
+        #print("Hola")
+        print("fila", fila)
+        lista.append(matriz[fila][columna])
+        #print(matriz[fila][columna])
+        print(lista)
+        #print("Columna:", columna)
+        if fila == len(matriz)-1:
+            flag = False
+            ZigZag_recursivo(matriz, fila, columna + 1, flag, lista)
+        ZigZag_recursivo(matriz, fila + 1, columna,flag,lista)
+    else:
+        #print("entre")
+        #print("fila", fila)
+        #print("Columna:", columna)
+        lista.append(matriz[fila][columna])
+        #print(matriz[fila][columna])
+        print(lista)
+        if fila == 0:
+            flag = True
+            print("NFAKJDN", fila)
+            ZigZag_recursivo(matriz, fila, columna + 1, flag,lista)
+        ZigZag_recursivo(matriz, fila -1, columna,flag,lista)
+
+
+
+
+
 def ZigZag_raro(Matriz):
-    import random
     if len(Matriz) != len(Matriz[0]):
         return "La matriz debe de ser cuadrada"
     else:
@@ -71,5 +108,5 @@ m = int(input("Ingrese el valor m: ")) #n
 matriz = CrearMatriz(n,m)
 #print("La sumatoria es: ", SumatoriaMatriz(MostrarMatriz(matriz))) #^2
 #Mostrar_ZigZag(MostrarMatriz(matriz))
-
-print(ZigZag_raro(MostrarMatriz(matriz)))
+#print(ZigZag_raro(MostrarMatriz(matriz)))
+ZigZag_recursivo(MostrarMatriz(matriz),0,0)
