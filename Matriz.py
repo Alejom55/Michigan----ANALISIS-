@@ -1,13 +1,12 @@
 #Alejandro Marin, Juan Pablo Aguirre, Daniel Lasso, Santiago Arango
 def CrearMatriz(n, m): #^2
-    return [[int(input("Ingrese numero ")) for k in range(m)] for j in range(n)] #^2
+    import random
+    return [[random.randint(0, 99) for k in range(m)] for j in range(n)] #^2
 def MostrarMatriz(Matriz): #n
     print(*Matriz, sep='\n') #n
     return Matriz #n
 def SumatoriaMatriz(Matriz): #n
     return sum(sum(fila) for fila in Matriz) #n
-n = int(input("Ingrese el valor n: ")) #n
-m = int(input("Ingrese el valor m: ")) #n
 
 def Mostrar_ZigZag(matriz,flag=True,n=0):
     for j in range(len(matriz[0])):
@@ -23,57 +22,54 @@ def Mostrar_ZigZag(matriz,flag=True,n=0):
             flag=True
         n+=1
 
-print("La sumatoria es: ", SumatoriaMatriz(MostrarMatriz(CrearMatriz(n,m)))) #^2
-
-matriz = MostrarMatriz(CrearMatriz(n,m))
-Mostrar_ZigZag(matriz)
-
-
-import random
-
-n = 4
-matrix = [[random.randint(0, 99) for j in range(n)] for i in range(n)]
-print(*matrix, sep='\n')
-n = len(matrix)
-result = []
-row, col = 0, 0
-up = True
-
-while row < n and col < n:
-  if up:
-    while row >= 0 and col < n:
-      result.append(matrix[row][col])
-      print("up")
-      print("row ", row , " col", col)
-
-
-      row -= 1
-      col += 1
-    if col < n:
-      row = 0
-      print("row after ", row , " col after", col)  
+def ZigZag_raro(Matriz):
+    import random
+    if len(Matriz) != len(Matriz[0]):
+        return "La matriz debe de ser cuadrada"
     else:
-      row += 2
-      col -= 1
-      print("row after ", row , " col after", col)  
-  else:
-    while col >= 0 and row < n:
-      result.append(matrix[row][col])
-      print("down")
-      print("row ", row , " col", col)
+        n = len(Matriz)
+        resultado = []
+        fila, columna = 0, 0
+        up = True
 
+        while fila < n and columna < n:
+            if up:
+                while fila >= 0 and columna < n:
+                    resultado.append(Matriz[fila][columna])
+                    #print("up")
+                    #print("fila ", fila , " columna", columna)
+                    fila -= 1
+                    columna += 1
+                if columna < n:
+                    fila = 0
+                    #print("fila after ", fila , " columna after", columna)  
+                else:
+                    fila += 2
+                    columna -= 1
+                    #print("fila after ", fila , " columna after", columna)  
+            else:
+                while columna >= 0 and fila < n:
+                    resultado.append(Matriz[fila][columna])
+                    #print("down")
+                    #print("fila ", fila , " columna", columna)
+                    fila += 1
+                    columna -= 1
+                if fila < n:
+                    columna = 0
+                    #print("fila after ", fila , " columna after", columna)  
+                else:
+                    columna += 2
+                    fila -= 1
+                    #print("fila after", fila , " columna after", columna)  
+            up = not up
+            #print(up)
 
-      row += 1
-      col -= 1
-    if row < n:
-      col = 0
-      print("row after ", row , " col after", col)  
-    else:
-      col += 2
-      row -= 1
-      print("row after", row , " col after", col)  
-  up = not up
-  print(up)
+        return resultado
 
-print(result)
+n = int(input("Ingrese el valor n: ")) #n
+m = int(input("Ingrese el valor m: ")) #n
+matriz = CrearMatriz(n,m)
+#print("La sumatoria es: ", SumatoriaMatriz(MostrarMatriz(matriz))) #^2
+#Mostrar_ZigZag(MostrarMatriz(matriz))
 
+print(ZigZag_raro(MostrarMatriz(matriz)))
