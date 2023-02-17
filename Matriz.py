@@ -27,3 +27,53 @@ print("La sumatoria es: ", SumatoriaMatriz(MostrarMatriz(CrearMatriz(n,m)))) #^2
 
 matriz = MostrarMatriz(CrearMatriz(n,m))
 Mostrar_ZigZag(matriz)
+
+
+import random
+
+n = 4
+matrix = [[random.randint(0, 99) for j in range(n)] for i in range(n)]
+print(*matrix, sep='\n')
+n = len(matrix)
+result = []
+row, col = 0, 0
+up = True
+
+while row < n and col < n:
+  if up:
+    while row >= 0 and col < n:
+      result.append(matrix[row][col])
+      print("up")
+      print("row ", row , " col", col)
+
+
+      row -= 1
+      col += 1
+    if col < n:
+      row = 0
+      print("row after ", row , " col after", col)  
+    else:
+      row += 2
+      col -= 1
+      print("row after ", row , " col after", col)  
+  else:
+    while col >= 0 and row < n:
+      result.append(matrix[row][col])
+      print("down")
+      print("row ", row , " col", col)
+
+
+      row += 1
+      col -= 1
+    if row < n:
+      col = 0
+      print("row after ", row , " col after", col)  
+    else:
+      col += 2
+      row -= 1
+      print("row after", row , " col after", col)  
+  up = not up
+  print(up)
+
+print(result)
+
