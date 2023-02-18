@@ -46,6 +46,7 @@ def ZigZag_recursivo(matriz,fila,columna, flag = True, lista= []):
 
 
 def ZigZag_raro(Matriz): #^2
+    #1+n+1+1+n+n+1+n+n+1+^2+1+^2+n+n+n+^2+n+n+n+n+1+n+n+n+n+n+n+^2+n+n+n = 7+ 21n + 4(^2) =  por ende, como tenemos ^2 el nivel de complejidad de la función es ese.
     if len(Matriz) != len(Matriz[0]):#n
         return "La matriz debe de ser cuadrada"#1
     else:#1
