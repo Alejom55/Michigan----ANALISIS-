@@ -23,38 +23,21 @@ def Mostrar_ZigZag(matriz,flag=True,n=0):
         n+=1
 
 def ZigZag_recursivo(matriz,fila,columna, flag = True, lista= []):
-    #print("soy len",len(matriz))
-    #print("flag: ", flag)
-    #print("fila", fila)
-    #print("Columna:", columna)
-    #print(len(matriz[columna]))
-    #print(len(matriz[0])) = 3
-    if columna == (len(matriz[0]) -1):
+    if columna == len(matriz[0]):
         return lista
     
     if flag:
-        #print("Hola")
-        print("fila", fila)
         lista.append(matriz[fila][columna])
-        #print(matriz[fila][columna])
-        print(lista)
-        #print("Columna:", columna)
         if fila == len(matriz)-1:
             flag = False
-            ZigZag_recursivo(matriz, fila, columna + 1, flag, lista)
-        ZigZag_recursivo(matriz, fila + 1, columna,flag,lista)
+            return ZigZag_recursivo(matriz, fila, columna + 1, flag, lista)
+        return ZigZag_recursivo(matriz, fila + 1, columna,flag,lista)
     else:
-        #print("entre")
-        #print("fila", fila)
-        #print("Columna:", columna)
         lista.append(matriz[fila][columna])
-        #print(matriz[fila][columna])
-        print(lista)
         if fila == 0:
             flag = True
-            print("NFAKJDN", fila)
-            ZigZag_recursivo(matriz, fila, columna + 1, flag,lista)
-        ZigZag_recursivo(matriz, fila -1, columna,flag,lista)
+            return ZigZag_recursivo(matriz, fila, columna + 1, flag,lista)
+        return ZigZag_recursivo(matriz, fila -1, columna,flag,lista)
 
 
 
@@ -109,4 +92,4 @@ matriz = CrearMatriz(n,m)
 #print("La sumatoria es: ", SumatoriaMatriz(MostrarMatriz(matriz))) #^2
 #Mostrar_ZigZag(MostrarMatriz(matriz))
 #print(ZigZag_raro(MostrarMatriz(matriz)))
-ZigZag_recursivo(MostrarMatriz(matriz),0,0)
+print(ZigZag_recursivo(MostrarMatriz(matriz),0,0))
