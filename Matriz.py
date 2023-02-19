@@ -1,4 +1,4 @@
-#Alejandro Marin, Juan Pablo Aguirre, Daniel Lasso, Santiago Arango
+#Alejandro Marin, Jeysson Alejandro Betancur, Juan Pablo Aguirre, Daniel Lasso, Santiago Arango
 def CrearMatriz(n, m): #^2
     import random
     return [[random.randint(0, 99) for k in range(m)] for j in range(n)] #^2
