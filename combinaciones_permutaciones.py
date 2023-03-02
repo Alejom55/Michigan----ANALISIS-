@@ -1,14 +1,23 @@
-def es_permutacion_o_combinacion():
-    pregunta = input("Es permutación o combinación")
-    if pregunta == "permutación":
-        permutacion()
+def orden():
+    pregunta = input("Importa el orden")
+    if pregunta == "si":
+        orden_si(pregunta)
     else:
         pass 
-def permutacion (pregunta):
-    orden = input("¿Importa el orden? si/no")
-    orden.lower()
-    if orden == "si":
-        valor_n = input("Ingrese valores en n")      
-        valor_m = input("Ingrese valores en m")
-        
+def orden_si (pregunta):
+    entran_todos_los_elementos = input("¿Entran todos los elementos?")
+    entran_todos_los_elementos.lower()
+    if entran_todos_los_elementos == "si":
+        permutaciones()
+    else:
+        variaciones()
+
+def permutaciones():
+    pass
+
+def variaciones():
+    pass
+
+
+
 
