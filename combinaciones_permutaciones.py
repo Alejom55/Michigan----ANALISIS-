@@ -1,23 +1,32 @@
 def orden():
-    pregunta = input("Importa el orden")
-    if pregunta == "si":
+    m=int(input("Ingrese cantidad total de elementos"))
+    n=int(input("Ingrese cantidad de probabilides"))
+
+    print("""0.Si
+                1.No""")
+    pregunta = int(input("Importa el orden"))
+    if pregunta == 0:
         orden_si(pregunta)
-    else:
+    elif pregunta == 1:
         pass 
 def orden_si (pregunta):
-    entran_todos_los_elementos = input("¿Entran todos los elementos?")
-    entran_todos_los_elementos.lower()
-    if entran_todos_los_elementos == "si":
+    entran_todos_los_elementos = int(input("¿Entran todos los elementos?"))
+    print("""0.Si
+                1.No""")
+    if entran_todos_los_elementos == 0:
         permutaciones()
-    else:
+    elif entran_todos_los_elementos == 1:
         variaciones()
 
 def permutaciones():
-    pass
+    se_repiten_elementos = int(input("¿Se repiten los elementos?"))
+    print("""0.Si
+                1.No""")  
+    if se_repiten_elementos == 0:
+        pass
 
 def variaciones():
     pass
 
-
-
-
+def main():
+    print
