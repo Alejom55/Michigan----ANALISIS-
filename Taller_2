@@ -1,0 +1,36 @@
+from math import factorial
+
+def si_no(respuesta_Usuario):
+    if respuesta_Usuario == 0:
+        return True
+    elif respuesta_Usuario == 1:
+        return False
+
+def main():
+    m = int(input('Ingrese la cantidad de elementos      ==>'))
+    n = int(input('Ingrese la cantidad de probabilidades ==>'))
+    print('----------------------------------------------------')
+    print("Ingrese 0 para SI y 1 para NO")
+    
+    importa_orden = si_no(int(input("Importa el orden?   ")))
+    intervienen_todos = si_no(int(input("Intervienen todos los elementos?   ")))
+    se_repiten = si_no(int(input("se repiten elementos?   ")))
+    
+    if importa_orden:   
+        if intervienen_todos:
+            if se_repiten:
+                print(factorial(m)/1*2*3) #Averigue bien este
+            else:
+                print(factorial(m))
+        else:
+            if se_repiten:
+                print(m**n)
+            else:
+                print((factorial(m)/factorial(m-n)))
+    else:
+        if se_repiten:
+            print(factorial((m+n-1))/(factorial(n)*factorial(m-1)))
+        else:
+            print(factorial(m)/factorial(n)*factorial(m-n))
+
+main()
