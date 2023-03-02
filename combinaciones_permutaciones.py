@@ -1,3 +1,5 @@
+from math import factorial
+
 m = int(input("Ingrese cantidad total de elementos"))
 n = int(input("Ingrese cantidad de probabilides"))
 def orden():
@@ -27,12 +29,21 @@ def se_repiten_elementos(): #LA IDEA DE ESTE METODO ES EVITAR HACER LAS MISMAS L
 def permutaciones():
     a = se_repiten_elementos()
     if a == 0:
+        # La formula es P_n / a! b! c!, pero no sabemos que es P o al menos santiago y yo :p
         pass
-    elif se_repiten_elementos == 1:
-        pass
+    elif a == 1:
+        operacion = m**n
+        print(f"El valore es {operacion}")
 
 def variaciones():
-    pass
+    a = se_repiten_elementos()
+    if a == 0:
+        solucion = m**n
+        print(f"El valor es {solucion}")
+        
+    elif a == 1:
+        solucion = factorial(m) / factorial(m-n) 
+        print(f"El valor es {solucion}")
 
-
+ 
 
