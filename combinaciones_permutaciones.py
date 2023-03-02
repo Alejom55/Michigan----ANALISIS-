@@ -1,7 +1,6 @@
+m = int(input("Ingrese cantidad total de elementos"))
+n = int(input("Ingrese cantidad de probabilides"))
 def orden():
-    m=int(input("Ingrese cantidad total de elementos"))
-    n=int(input("Ingrese cantidad de probabilides"))
-
     print("""0.Si
                 1.No""")
     pregunta = int(input("Importa el orden"))
@@ -9,6 +8,8 @@ def orden():
         orden_si(pregunta)
     elif pregunta == 1:
         pass 
+
+
 def orden_si (pregunta):
     entran_todos_los_elementos = int(input("¿Entran todos los elementos?"))
     print("""0.Si
@@ -18,15 +19,20 @@ def orden_si (pregunta):
     elif entran_todos_los_elementos == 1:
         variaciones()
 
-def permutaciones():
-    se_repiten_elementos = int(input("¿Se repiten los elementos?"))
+def se_repiten_elementos(): #LA IDEA DE ESTE METODO ES EVITAR HACER LAS MISMAS LINEAS DE CODIGO EN EL PROGRAMA, ESTA PREGUNTA SE HARÁ EN PERMUTACION Y VARIACION PERO NO SE SI ESTÁ BIEN
+    si_no = int(input("¿Se repiten los elementos?"))
     print("""0.Si
                 1.No""")  
-    if se_repiten_elementos == 0:
+    return si_no
+def permutaciones():
+    a = se_repiten_elementos()
+    if a == 0:
+        pass
+    elif se_repiten_elementos == 1:
         pass
 
 def variaciones():
     pass
 
-def main():
-    print
+
+
