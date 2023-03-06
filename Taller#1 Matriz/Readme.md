@@ -1,0 +1,1 @@
+#Este es el primer proyecto de analisis y diseño de algoritmos, la idea de este software es poder hacer que la matriz se recorra de forma descendente y ascentendete en uno de los codigos y en el otro de forma recursiva pero de manera diagonal, emepzando de la esquina izquierda superior hasta la derecha inferior en forma de zigzag
