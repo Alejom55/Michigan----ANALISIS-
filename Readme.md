@@ -1,1 +1,0 @@
-#Esta aplicación tendra la funcionalidad de resolver problemas de principios de conteo (combinacion con repeticion, sin repeticion, permutacion con repeticion, ordinaria ), lo unico que tendrá que hacer  es responder 3 preguntas y seguido de eso digitar los valores a operar. M = (Cantidad total de elementos), N = (Cantidad de elementos que se usarán)
