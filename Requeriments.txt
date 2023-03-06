@@ -1,1 +1,0 @@
-#1) El software tiene que realizar una petición al usuario pidiendo que diga (Tipo de combinatoria, valor de m y valor de n, si n se repite, si sí, si va a sumar o multiplicar)
