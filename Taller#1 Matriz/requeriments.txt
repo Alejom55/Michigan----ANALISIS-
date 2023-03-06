@@ -1,0 +1,2 @@
+1) El software tiene que recorrer de forma ascendente y descente la matriz, sin importar el tamaño e imprimir los valores en ese orden
+2) El software tiene que recorrer de forma zigzag empezando en la esquina superior izquierda y terminando en la ultima posicion que seria inferior derecha la matriz, sin importar el tamaño e imprimir los valores en ese orden
