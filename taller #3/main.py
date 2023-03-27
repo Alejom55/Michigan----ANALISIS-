@@ -1,17 +1,15 @@
 import tkinter as tk
-#from funciones import *
 
 ventana_principal = tk.Tk()
 ventana_principal.geometry("400x300")
 ventana_principal.title("")
 
 def calcular_ecuacion():
-    
-    k_1 = int(tb_k_1.get())
-    r_1 = int(tb_r_1.get())
-    k_2 = int(tb_k_2.get())
-    r_2 = int(tb_r_2.get())
-    n = int(tb_n.get())
+    k_1 = eval(tb_k_1.get())
+    r_1 = eval(tb_r_1.get())
+    k_2 = eval(tb_k_2.get())
+    r_2 = eval(tb_r_2.get())
+    n = eval(tb_n.get())
     resultado = (k_1 * r_1**n) + (k_2 * r_2**n)
     lb_resultado2.config(text=int(resultado))
 
@@ -21,7 +19,7 @@ lb_k_1 = tk.Label(ventana_principal, text="Ingrese k₁:")
 lb_k_1.grid(row=1,column=0)
 lb_r_1 = tk.Label(ventana_principal, text="Ingrese k₂:")
 lb_r_1.grid(row=2,column=0)
-lb_k_2 = tk.Label(ventana_principal, text="Ingrese k₁:")
+lb_k_2 = tk.Label(ventana_principal, text="Ingrese r₁:")
 lb_k_2.grid(row=3,column=0)
 lb_r_2 = tk.Label(ventana_principal, text="Ingrese r₂:")
 lb_r_2.grid(row=4,column=0)
