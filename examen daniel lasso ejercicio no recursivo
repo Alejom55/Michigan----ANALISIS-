@@ -1,0 +1,25 @@
+intento recursivo
+def recursividad_lista_max(lista, max = 0):
+  if lista == []:
+    return "Lista vacia"
+  
+  else:
+    if lista[0]> max: 
+      max = lista[0]
+      recursividad_lista_max(lista[:1], max)
+    return max 
+
+print(recursividad_lista_max([1,5,8]))
+
+
+no recursivo
+def mayor(lista): #n
+    # (1+n+n+n+n) = n
+  max = lista[0]; #1
+  for i in lista: #n
+    if i > max: #n
+      max = i #n
+  return max  #n
+
+
+print(mayor([1,2,3,4]))         
