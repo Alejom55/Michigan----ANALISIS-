@@ -1,0 +1,19 @@
+#punto 2
+
+lista = [-10,1000,26,-13,5]  #O(1)
+a = lista[0]  #O(1)
+
+def mayor(lista,elemento_mayor):
+    
+    if len(lista) == 0: #O(n)
+        return elemento_mayor
+    else: #O(nlog(n))
+        if lista[0]>elemento_mayor: #O(n)
+            elemento_mayor=lista.pop(0)  #O(1)
+            return mayor(lista,elemento_mayor)
+        lista.pop(0)  # O(1)
+        return mayor(lista,elemento_mayor)
+
+print("El elemento mayor es: ", mayor(lista,a)) #O(1)
+
+#Complejidad O(nlog(n))
