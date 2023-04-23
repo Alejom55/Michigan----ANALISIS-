@@ -2,6 +2,7 @@ import requests
 import json
 import pandas as pd
 
+#LINK CUADERNO https://colab.research.google.com/drive/1AmsXfxmm4-29IHno7LZtm092TwMaJe8G?usp=sharing
 
 class sortpy:
     def count_sort(self, lista):
