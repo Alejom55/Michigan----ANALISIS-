@@ -1,0 +1,159 @@
+import requests
+import json
+import pandas as pd
+
+
+class sortpy:
+    def count_sort(self, lista):
+        lista_aux = [0 for x in range(max(lista) + 1)]
+        for numero_actual in lista:
+            lista_aux[numero_actual] += 1
+        for contador in range(1, len(lista_aux)):
+            lista_aux[contador] += lista_aux[contador - 1]
+        lista_ordenada = [0 for x in range(len(lista))]
+        for numero_actual in lista:
+            lista_ordenada[lista_aux[numero_actual] - 1] = numero_actual
+            lista_aux[numero_actual] -= 1
+        return lista_ordenada
+    
+    def merge_sort(self, lista):
+        if len(lista) <= 1:
+            return lista
+
+        medio = len(lista) // 2
+        lista_izq = lista[:medio]
+        lista_der = lista[medio:]
+
+        lista_izq = self.merge_sort(lista_izq)
+        lista_der = self.merge_sort(lista_der)
+
+        return sortpy.merge(lista_izq, lista_der)
+
+    def merge(lista_izquierda, lista_der):
+        lista_resultado = []
+        while(len(lista_izquierda) > 0 and len(lista_der) > 0):
+            if lista_izquierda[0] < lista_der[0]:
+                lista_resultado.append(lista_izquierda[0])
+                lista_izquierda = lista_izquierda[1:]      
+            else:
+                lista_resultado.append(lista_der[0])
+                lista_der = lista_der[1:]
+
+        if len(lista_izquierda) > 0:
+            lista_resultado.extend(lista_izquierda)
+
+        if len(lista_der) > 0:
+            lista_resultado.extend(lista_der)
+
+        return lista_resultado
+    
+    def quick_sort(self, lista):
+      lista_izquierda = []
+      lista_derecha = []
+      if len(lista) <= 1:
+          return lista
+      else:
+          for valor in lista[1:]:
+              pivote = lista[0]
+              #print(f"VALOR", valor)
+              #print(f"pivote", pivote)
+              if valor < pivote:
+                #print("IFFFFF")
+                #print(f"pivote", pivote)
+                lista_izquierda.append(valor)
+                #print(f"lista_izquierda", lista_izquierda)
+              else:
+                #print("ELSEEEEEE")
+                #print(f"pivote", pivote)
+                lista_derecha.append(valor)
+                #print(f"lista _derecha", lista_derecha )
+          #print("finalizamos el for")
+
+          #print(f"LISTA PROVICIONAL ES:", lista)
+          return self.quick_sort(lista_izquierda) + [pivote] + self.quick_sort(lista_derecha)
+    
+    def bubble_sort_recursivo(self, lista):
+      n = len(lista)
+      if n <= 1:
+          return lista
+      for i in range(n-1):
+          if lista[i] > lista[i+1]:
+              lista[i], lista[i+1] = lista[i+1], lista[i]
+      return self.bubble_sort(lista[:-1]) + [lista[-1]]   # Llamada recursiva con el arreglo sin el último elemento 
+
+
+    def bubble_sort(self, lista):
+        n = len(lista)
+        if n <= 1:
+            return lista
+
+        for i in range(n):
+            for j in range(n-i-1):
+                if lista[j] > lista[j+1]:
+                    lista[j], lista[j+1] = lista[j+1], lista[j]
+
+        return lista
+
+    def radix_sort(self, lista):
+      lista = [str(x) for x in lista]
+      mayor = max(lista, key=len)
+    
+      for i in range(len(lista)):  # Agregar ceros a la izquierda para igualar la longitud del mayor
+          lista[i] = lista[i].zfill(len(mayor))
+      
+      for k in range(len(mayor)-1, -1, -1):
+          buckets = [[] for _ in range(10)]
+          for num in lista:
+              #print(num[k])
+              digit = int(num[k])
+              buckets[digit].append(num)
+          lista = [num for bucket in buckets for num in bucket]
+      
+      lista = [int(x) for x in lista]
+      return lista  
+    
+    def heapify(lista, n, i):
+    
+      largo = i
+      hijo_izquierda = 2 * i + 1
+      hijo_derecha = 2 * i + 2
+      if hijo_izquierda < n and lista[i] < lista[hijo_izquierda]:
+          largo = hijo_izquierda
+      if hijo_derecha < n and lista[largo] < lista[hijo_derecha]:
+          largo = hijo_derecha
+      if largo != i:
+          lista[i], lista[largo] = lista[largo], lista[i]
+          sortpy.heapify(lista, n, largo)
+    
+    def heap_sort(self, lista):
+      n = len(lista)
+      for i in range(n // 2 - 1, -1, -1):# Construir un heap máximo
+        sortpy.heapify(lista, n, i)
+    
+      for i in range(n - 1, 0, -1):
+        lista[i], lista[0] = lista[0], lista[i] # Extraemos elementos uno por uno
+        sortpy.heapify(lista, i, 0)  
+    
+    
+      return lista
+
+s = sortpy()
+
+
+#print(s.heap_sort(lista))
+
+url = 'https://www.datos.gov.co/resource/gt2j-8ykr.json?$query=SELECT%0A%20%20%60fecha_reporte_web%60%2C%0A%20%20%60id_de_caso%60%2C%0A%20%20%60fecha_de_notificaci_n%60%2C%0A%20%20%60departamento%60%2C%0A%20%20%60departamento_nom%60%2C%0A%20%20%60ciudad_municipio%60%2C%0A%20%20%60ciudad_municipio_nom%60%2C%0A%20%20%60edad%60%2C%0A%20%20%60unidad_medida%60%2C%0A%20%20%60sexo%60%2C%0A%20%20%60fuente_tipo_contagio%60%2C%0A%20%20%60ubicacion%60%2C%0A%20%20%60estado%60%2C%0A%20%20%60pais_viajo_1_cod%60%2C%0A%20%20%60pais_viajo_1_nom%60%2C%0A%20%20%60recuperado%60%2C%0A%20%20%60fecha_inicio_sintomas%60%2C%0A%20%20%60fecha_muerte%60%2C%0A%20%20%60fecha_diagnostico%60%2C%0A%20%20%60fecha_recuperado%60%2C%0A%20%20%60tipo_recuperacion%60%2C%0A%20%20%60per_etn_%60%2C%0A%20%20%60nom_grupo_%60'
+
+r = requests.get(url)
+
+json = r.json()
+
+
+edades = []
+
+for objeto_json in json:
+    edad = int(objeto_json["edad"])
+    edades.append(edad)
+
+
+print(s.bubble_sort(edades))
