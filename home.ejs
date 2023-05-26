@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Orbitron:wght@800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3ab1775d52.js" crossorigin="anonymous"></script>
+</head>
+<style>
+  .buttonx {
+ position: relative;
+ height: 50px;
+ width: 100px;
+ border: 2px solid #ffffff;
+ background: #000000;
+ user-select: none;
+ white-space: nowrap;
+ transition: all .05s linear;
+ font-family: inherit;
+ color: #F3FFF9;
+}
+
+.buttonx:before, .buttonx:after {
+ content: "";
+ position: absolute;
+ background: #011522;
+ transition: all .2s linear;
+}
+
+.buttonx:before {
+ width: calc(100% + 6px);
+ height: calc(100% - 16px);
+ top: 8px;
+ left: -3px;
+}
+
+.buttonx:after {
+ width: calc(100% - 16px);
+ height: calc(100% + 6px);
+ top: -3px;
+ left: 8px;
+}
+
+.buttonx:hover {
+ cursor: crosshair;
+}
+
+.buttonx:active {
+ transform: scale(0.95);
+}
+
+.buttonx:hover:before {
+ height: calc(100% - 32px);
+ top: 16px;
+}
+
+.buttonx:hover:after {
+ width: calc(100% - 32px);
+ left: 16px;
+}
+
+.buttonx span {
+ font-size: 15px;
+ z-index: 3;
+ position: relative;
+ font-weight: 600;
+}
+  .textarea {
+ width: 500px;
+ height: 254px;
+ background: white;
+ border-radius: 10px;
+ transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.shadow {
+ box-shadow: inset 0 -3em 3em rgb(255, 0, 0),
+             0 0  0 2px rgb(255, 0, 0),
+             0.3em 0.3em 1em rgb(255, 0, 0);
+}
+
+
+  .input__container--variant {
+  background: linear-gradient(to bottom, #F3FFF9, #F3FFF9);
+  border-radius: 30px;
+  width: 500px;
+
+
+}
+
+.shadow__input--variant {
+  filter: blur(25px);
+  border-radius: 30px;
+  background-color: #F3FFF9;
+  opacity: 0.5;
+}
+
+.input__button__shadow--variant {
+  border-radius: 15px;
+  background-color: #07372C;
+  padding: 10px;
+  border: none;
+  width: 460px;
+}
+
+.input__button__shadow--variant:hover {
+  background-color: #3C6659;
+}
+
+.input__search--variant {
+  width: 470px;
+  align-items: center;
+  border-radius: 13em;
+  outline: none;
+  border: none;
+  padding: 0.8em;
+  font-size: 1.2em;
+  color: #002019;
+  background-color: transparent;
+}
+
+.input__search--variant::placeholder {
+  color: #002019;
+  opacity: 0.7;
+}
+
+.input__container--variant {
+  background: linear-gradient(to bottom, #F3FFF9, #F3FFF9);
+  border-radius: 1.5em;
+  padding: 1em;
+  box-shadow: 0em 1em 3em #beecdc64;
+}
+
+
+    /* Center the content in the card */
+    .card__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+.card {
+ width: 100%;
+ height: 1000px;
+ margin: 0 auto;
+ background-color: #011522;
+ z-index: 1;
+}
+
+.tools {
+ display: flex;
+ align-items: center;
+ padding: 9px;
+}
+
+.circle {
+ padding: 0 4px;
+}
+
+.box {
+ display: inline-block;
+ align-items: center;
+ width: 10px;
+ height: 10px;
+ padding: 1px;
+ border-radius: 50%;
+}
+
+.red {
+ background-color: #ff605c;
+}
+
+.yellow {
+ background-color: #ffbd44;
+}
+
+.green {
+ background-color: #00ca4e;
+}
+
+</style>
+
+<body>
+  <div class="card">
+    <div class="tools">
+      <div class="circle">
+        <span class="red box"></span>
+      </div>
+      <div class="circle">
+        <span class="yellow box"></span>
+      </div>
+      <div class="circle">
+        <span class="green box"></span>
+      </div>
+    </div>
+
+      <div class="card__content">
+        <div class="col-sm-4" style="margin-top: 100px; margin-left: 200px;">
+          <h1 for="" style="color: azure;font-family: 'Orbitron', sans-serif;">Inserte su Endpoint</h1><br>
+          <div class="input__container input__container--variant mt-4">
+            <div class="shadow__input shadow__input--variant"></div>
+            <input type="text" name="text" id="inputend" class="input__search input__search--variant" placeholder="Search...">
+            <button class="input__button__shadow input__button__shadow--variant" id="endpoint">
+              <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="1.5em" width="13em">
+                <path d="M4 9a5 5 0 1110 0A5 5 0 014 9zm5-7a7 7 0 104.2 12.6.999.999 0 00.093.107l3 3a1 1 0 001.414-1.414l-3-3a.999.999 0 00-.107-.093A7 7 0 009 2z" fill-rule="evenodd" fill="#FFF"></path>
+              </svg>
+            </button>
+          </div>
+        </div><br>
+
+        <div class="col-sm-3" style="margin-left: 50px;">
+          <select class="form-control" id="mi-select" style="display: none;background-color: #F3FFF9;">
+            <br>
+          <textarea class="mt-3 textarea shadow" id="textarea" cols="30" rows="10" style="display: none;"></textarea>
+
+          </select>
+          <div class="row px-2">
+            <select class="form-control" id="sort" style="display: none;background-color: #F3FFF9; width: 200px;margin-left: 5px;">
+              <option value="1">Bubblesort</option>
+              <option value="2">Quicksort</option>
+              <option value="3">Mergesort</option>
+              <option value="4">Radixsort</option>
+              <option value="5">Heapsort</option>
+              <option value="6">Countsort</option>
+            </select>
+            <button id="calculo" class="buttonx" style="display: none; width: 100px;margin-left: 20px;"><span>Calcular</span></button>
+          </div>
+          <div class="row mt-4">
+            <label id="timelabel" for="time" style="font-family: 'Orbitron', sans-serif;display: none;color: azure;" >Tiempo de Ejecución</label>
+            <textarea class="mt-3 form-control" id="time" cols="10" rows="1" style="display: none;background-color: #F3FFF9;margin-left: 5px;" placeholder="Tiempo de ejecución"></textarea>
+          </div>
+        </div>
+
+
+      </div>
+
+  </div>
+
+  <!-- Importa los scripts de Bootstrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+  <script>
+    
+    $("#inputend").on( "change", function() {
+      var selectElement = document.getElementById("mi-select");
+      selectElement.innerHTML = "";
+
+    })
+  
+    $("#endpoint").on( "click", function() {
+      $("#mi-select").fadeIn()
+      $("#textarea").fadeIn()
+      $.ajax({
+        type: "GET",
+        url: $("#inputend").val(),
+        dataType: "text",
+        success: function(data) {
+          var rows = data.split("\n");
+        var columns = rows[0].split(","); // Suponemos que la primera fila contiene los encabezados de las columnas
+
+        var select = $("#mi-select");
+        $.each(columns, function(index, column) {
+          var columnValues = [];
+          for (var i = 1; i < rows.length; i++) {
+            var rowData = rows[i].split(",");
+            columnValues.push(rowData[index]);
+          }
+
+          var option = $('<option></option>').val(columnValues.join(",")).html(column); // Asignamos los valores de la columna como valor de la opción
+          select.append(option);
+        });
+      }
+      });
+
+    })
+    
+    $("#mi-select").on( "change", function() {
+
+      var elementos = $("#mi-select").val().split(",");
+      var lista = [];
+      //console.log('ELEMENTOS', elementos)
+      
+      for (var i = 0; i < elementos.length; i++) {
+        var elemento = elementos[i].trim().replace('"','').replace('"','');
+      
+        if (/^\d+$/.test(elemento)) {
+          lista.push(parseInt(elemento));
+        }
+      }
+      //  console.log(lista)
+      $("#textarea").val(lista)
+      if($("#textarea").val() != ''){
+        $("#sort").fadeIn()
+      }else{
+        $("#sort").fadeOut()
+        $("#calculo").fadeOut()
+      }
+    })
+
+  $("#sort").on( "change", function() {
+    $("#calculo").fadeIn()
+  })
+
+  $("#calculo").on( "click", function() {
+    $("#time").fadeIn()
+    $("#timelabel").fadeIn()
+    if($("#sort").val() == "1"){
+      let lista = $("#textarea").val().split(",").map(function(item) {
+      return parseInt(item.trim(), 10);
+    });
+
+    var startTime = performance.now();
+    let sorted = bubbleSort(lista)
+    var endTime = performance.now();
+    var executionTime = endTime - startTime;
+
+    $("#textarea").val(sorted)
+    $("#time").val(executionTime)
+
+    
+    
+      
+    }
+  })
+  
+
+  function bubbleSort(arr) {
+    const n = arr.length;
+  
+    for (let i = 0; i < n - 1; i++) {
+      // Realizar el recorrido del arreglo y comparar elementos adyacentes
+      for (let j = 0; j < n - i - 1; j++) {
+        // Si el elemento actual es mayor que el siguiente, intercambiarlos
+        if (arr[j] > arr[j + 1]) {
+          const temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+        }
+      }
+    }
+  
+    return arr;
+  }
+  </script>
+</body>
+
+</html>
