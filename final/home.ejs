@@ -404,214 +404,191 @@
   })
   
 
-  function bubbleSort(arr) {
-    const n = arr.length;
-  
-    for (let i = 0; i < n - 1; i++) {
-      // Realizar el recorrido del arreglo y comparar elementos adyacentes
-      for (let j = 0; j < n - i - 1; j++) {
-        // Si el elemento actual es mayor que el siguiente, intercambiarlos
-        if (arr[j] > arr[j + 1]) {
-          const temp = arr[j];
-          arr[j] = arr[j + 1];
-          arr[j + 1] = temp;
+function bubbleSort(arr) {
+    const n = arr.length;  // O(1)
+
+    for (let i = 0; i < n - 1; i++) {  // O(n)
+        // Realizar el recorrido del arreglo y comparar elementos adyacentes
+        for (let j = 0; j < n - i - 1; j++) {  // O(n)
+            // Si el elemento actual es mayor que el siguiente, intercambiarlos
+            if (arr[j] > arr[j + 1]) {  // O(1)
+                const temp = arr[j];  // O(1)
+                arr[j] = arr[j + 1];  // O(1)
+                arr[j + 1] = temp;  // O(1)
+            }
         }
-      }
     }
-  
-    return arr;
-  }
 
-  function quickSort(arr) {
+    return arr;  // O(1)
+}
+
+function quickSort(arr) {
     if (arr.length <= 1) {
-      return arr; // Caso base: el arreglo ya está ordenado
+        return arr;  // O(1)
     }
-  
-    // Seleccionar un pivote (normalmente el último elemento)
-    const pivot = arr[arr.length - 1];
-  
-    // Dividir el arreglo en dos particiones
-    const left = [];
-    const right = [];
-    for (let i = 0; i < arr.length - 1; i++) {
-      if (arr[i] < pivot) {
-        left.push(arr[i]);
-      } else {
-        right.push(arr[i]);
-      }
-    }
-  
-    // Recursivamente ordenar las particiones izquierda y derecha
-    const sortedLeft = quickSort(left);
-    const sortedRight = quickSort(right);
-  
-    // Combinar las particiones ordenadas junto con el pivote
-    return [...sortedLeft, pivot, ...sortedRight];
-  }
 
-  function mergeSort(arr) {
+    const pivot = arr[arr.length - 1];  // O(1)
+
+    const left = [];  // O(1)
+    const right = [];  // O(1)
+    for (let i = 0; i < arr.length - 1; i++) {  // O(n)
+        if (arr[i] < pivot) {  // O(1)
+            left.push(arr[i]);  // O(1)
+        } else {
+            right.push(arr[i]);  // O(1)
+        }
+    }
+
+    const sortedLeft = quickSort(left);  // T(n/2)
+    const sortedRight = quickSort(right);  // T(n/2)
+
+    return [...sortedLeft, pivot, ...sortedRight];  // O(n)
+}
+
+function mergeSort(arr) {
     if (arr.length <= 1) {
-      return arr; // Caso base: el arreglo ya está ordenado
+        return arr;  // O(1)
     }
-  
-    // Dividir el arreglo en dos mitades
-    const middle = Math.floor(arr.length / 2);
-    const left = arr.slice(0, middle);
-    const right = arr.slice(middle);
-  
-    // Recursivamente ordenar las dos mitades
-    const sortedLeft = mergeSort(left);
-    const sortedRight = mergeSort(right);
-  
-    // Combinar las mitades ordenadas
-    return merge(sortedLeft, sortedRight);
-  }
-  
-  function merge(left, right) {
-    const mergedArr = [];
-    let leftIndex = 0;
-    let rightIndex = 0;
-  
-    // Combinar los elementos en orden ascendente
-    while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex] < right[rightIndex]) {
-        mergedArr.push(left[leftIndex]);
-        leftIndex++;
-      } else {
-        mergedArr.push(right[rightIndex]);
-        rightIndex++;
-      }
-    }
-  
-    // Agregar los elementos restantes de la mitad izquierda (si los hay)
-    while (leftIndex < left.length) {
-      mergedArr.push(left[leftIndex]);
-      leftIndex++;
-    }
-  
-    // Agregar los elementos restantes de la mitad derecha (si los hay)
-    while (rightIndex < right.length) {
-      mergedArr.push(right[rightIndex]);
-      rightIndex++;
-    }
-  
-    return mergedArr;
-  }
 
-  function radixSort(arr) {
-    const maxNum = Math.max(...arr);
-    let exp = 1;
-  
-    while (Math.floor(maxNum / exp) > 0) {
-      countingSort(arr, exp);
-      exp *= 10;
-    }
-  
-    return arr;
-  }
-  
-  function countingSort(arr, exp) {
-    const n = arr.length;
-    const output = new Array(n).fill(0);
-    const count = new Array(10).fill(0);
-  
-    for (let i = 0; i < n; i++) {
-      const digit = Math.floor(arr[i] / exp) % 10;
-      count[digit]++;
-    }
-  
-    for (let i = 1; i < 10; i++) {
-      count[i] += count[i - 1];
-    }
-  
-    for (let i = n - 1; i >= 0; i--) {
-      const digit = Math.floor(arr[i] / exp) % 10;
-      output[count[digit] - 1] = arr[i];
-      count[digit]--;
-    }
-  
-    for (let i = 0; i < n; i++) {
-      arr[i] = output[i];
-    }
-  }
+    const middle = Math.floor(arr.length / 2);  // O(1)
+    const left = arr.slice(0, middle);  // O(n/2)
+    const right = arr.slice(middle);  // O(n/2)
 
-  function heapSort(arr) {
-    const n = arr.length;
-  
-    // Construir el heap máximo
-    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
-      heapify(arr, n, i);
-    }
-  
-    // Extraer elementos del heap uno por uno
-    for (let i = n - 1; i > 0; i--) {
-      // Mover el elemento máximo al final del arreglo
-      const temp = arr[0];
-      arr[0] = arr[i];
-      arr[i] = temp;
-  
-      // Llamar a heapify en el subárbol reducido
-      heapify(arr, i, 0);
-    }
-  
-    return arr;
-  }
-  
-  function heapify(arr, n, i) {
-    let largest = i; // Inicializar el nodo raíz como el más grande
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
-  
-    // Si el hijo izquierdo es más grande que la raíz
-    if (left < n && arr[left] > arr[largest]) {
-      largest = left;
-    }
-  
-    // Si el hijo derecho es más grande que la raíz
-    if (right < n && arr[right] > arr[largest]) {
-      largest = right;
-    }
-  
-    // Si el más grande no es la raíz actual, intercambiarlos
-    if (largest !== i) {
-      const temp = arr[i];
-      arr[i] = arr[largest];
-      arr[largest] = temp;
-  
-      // Recursivamente heapify el subárbol afectado
-      heapify(arr, n, largest);
-    }
-  }
+    const sortedLeft = mergeSort(left);  // T(n/2)
+    const sortedRight = mergeSort(right);  // T(n/2)
 
-  function countSort(lista) {
-    // Encontrar los valores mínimo y máximo en la lista
-    const min = Math.min(...lista);
-    const max = Math.max(...lista);
-  
-    // Calcular el rango de valores
-    const rango = max - min + 1;
-  
-    // Crear un arreglo auxiliar con ceros
-    const listaAux = new Array(rango).fill(0);
-  
-    // Contar la frecuencia de cada elemento en la lista
-    for (let i = 0; i < lista.length; i++) {
-      listaAux[lista[i] - min]++;
+    return merge(sortedLeft, sortedRight);  // O(n)
+}
+
+function merge(left, right) {
+    const mergedArr = [];  // O(1)
+    let leftIndex = 0;  // O(1)
+    let rightIndex = 0;  // O(1)
+
+    while (leftIndex < left.length && rightIndex < right.length) {  // O(n)
+        if (left[leftIndex] < right[rightIndex]) {  // O(1)
+            mergedArr.push(left[leftIndex]);  // O(1)
+            leftIndex++;  // O(1)
+        } else {
+            mergedArr.push(right[rightIndex]);  // O(1)
+            rightIndex++;  // O(1)
+        }
     }
-  
-    // Reconstruir la lista ordenada
-    let index = 0;
-    for (let i = 0; i < listaAux.length; i++) {
-      while (listaAux[i] > 0) {
-        lista[index] = i + min;
-        listaAux[i]--;
-        index++;
-      }
+
+    while (leftIndex < left.length) {  // O(n)
+        mergedArr.push(left[leftIndex]);  // O(1)
+        leftIndex++;  // O(1)
     }
-  
-    // Devolver la lista ordenada
-    return lista;
-  }
+
+    while (rightIndex < right.length) {  // O(n)
+        mergedArr.push(right[rightIndex]);  // O(1)
+        rightIndex++;  // O(1)
+    }
+
+    return mergedArr;  // O(n)
+}
+
+function radixSort(arr) {
+    const maxNum = Math.max(...arr);  // O(n)
+    let exp = 1;  // O(1)
+
+    while (Math.floor(maxNum / exp) > 0) {  // O(log n)
+        countingSort(arr, exp);  // O(n)
+        exp *= 10;  // O(1)
+    }
+
+    return arr;  // O(1)
+}
+
+function countingSort(arr, exp) {
+    const n = arr.length;  // O(1)
+    const output = new Array(n).fill(0);  // O(n)
+    const count = new Array(10).fill(0);  // O(1)
+
+    for (let i = 0; i < n; i++) {  // O(n)
+        const digit = Math.floor(arr[i] / exp) % 10;  // O(1)
+        count[digit]++;  // O(1)
+    }
+
+    for (let i = 1; i < 10; i++) {  // O(1)
+        count[i] += count[i - 1];  // O(1)
+    }
+
+    for (let i = n - 1; i >= 0; i--) {  // O(n)
+        const digit = Math.floor(arr[i] / exp) % 10;  // O(1)
+        output[count[digit] - 1] = arr[i];  // O(1)
+        count[digit]--;  // O(1)
+    }
+
+    for (let i = 0; i < n; i++) {  // O(n)
+        arr[i] = output[i];  // O(1)
+    }
+}
+
+function heapSort(arr) {
+    const n = arr.length;  // O(1)
+
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {  // O(n)
+        heapify(arr, n, i);  // O(log n)
+    }
+
+    for (let i = n - 1; i > 0; i--) {  // O(n)
+        const temp = arr[0];  // O(1)
+        arr[0] = arr[i];  // O(1)
+        arr[i] = temp;  // O(1)
+
+        heapify(arr, i, 0);  // O(log n)
+    }
+
+    return arr;  // O(1)
+}
+
+function heapify(arr, n, i) {
+    let largest = i;  // O(1)
+    const left = 2 * i + 1;  // O(1)
+    const right = 2 * i + 2;  // O(1)
+
+    if (left < n && arr[left] > arr[largest]) {  // O(1)
+        largest = left;  // O(1)
+    }
+
+    if (right < n && arr[right] > arr[largest]) {  // O(1)
+        largest = right;  // O(1)
+    }
+
+    if (largest !== i) {  // O(1)
+        const temp = arr[i];  // O(1)
+        arr[i] = arr[largest];  // O(1)
+        arr[largest] = temp;  // O(1)
+
+        heapify(arr, n, largest);  // O(log n)
+    }
+}
+
+function countSort(lista) {
+    const min = Math.min(...lista);  // O(n)
+    const max = Math.max(...lista);  // O(n)
+
+    const rango = max - min + 1;  // O(1)
+
+    const listaAux = new Array(rango).fill(0);  // O(rango)
+
+    for (let i = 0; i < lista.length; i++) {  // O(n)
+        listaAux[lista[i] - min]++;  // O(1)
+    }
+
+    let index = 0;  // O(1)
+    for (let i = 0; i < listaAux.length; i++) {  // O(rango)
+        while (listaAux[i] > 0) {  // O(n)
+            lista[index] = i + min;  // O(1)
+            listaAux[i]--;  // O(1)
+            index++;  // O(1)
+        }
+    }
+
+    return lista;  // O(1)
+}
+
   </script>
 </body>
 
