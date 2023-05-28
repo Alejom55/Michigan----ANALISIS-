@@ -1,45 +1,65 @@
-const express = require('express');#1
-const session = require('express-session');#1
-const bodyParser = require('body-parser');#1
-const app = express();#1
-const ejs = require('ejs');#1
-app.set('view engine', 'ejs');#1
+// O(1)
+const express = require('express');
 
-app.use(bodyParser.urlencoded({ extended: false }));#1
-app.use(bodyParser.json());#1
-app.use(session({#1
-  secret: 'mi_secreto', #1
-  resave: false, #1
-  saveUninitialized: false #1
+// O(1)
+const session = require('express-session');
+
+// O(1)
+const bodyParser = require('body-parser');
+
+// O(1)
+const app = express();
+
+// O(1)
+const ejs = require('ejs');
+
+// O(1)
+app.set('view engine', 'ejs');
+
+// O(1)
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// O(1)
+app.use(bodyParser.json());
+
+// O(1)
+app.use(session({
+  secret: 'mi_secreto',
+  resave: false,
+  saveUninitialized: false
 }));
-app.engine('html', ejs.renderFile); #1
-app.set('view engine', 'ejs'); #1
-app.set('views', './views'); #1
 
+// O(1)
+app.engine('html', ejs.renderFile);
+
+// O(1)
+app.set('view engine', 'ejs');
+
+// O(1)
+app.set('views', './views');
 
 /* GET METHODS */
 
-app.get('/', (req, res) => { #1
-  if (!req.session.login) { res.redirect('/login'); return; } #1
-  res.redirect('/home'); #1
+// O(1)
+app.get('/', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.redirect('/home');
 });
 
-
-app.get('/home', (req, res) => { #1
+// O(1)
+app.get('/home', (req, res) => {
   //console.log('SESSION USERNAME HOME ', req.session.username)
- 
-  res.render('home'); #1
+  res.render('home');
 });
 
-app.post('/home', (req, res) => { #1
-  console.log('BODY HOME ', req.body) #1
-
-  res.render('home'); #1
+// O(1)
+app.post('/home', (req, res) => {
+  console.log('BODY HOME ', req.body)
+  res.render('home');
 });
 
-
-app.listen(7777, () => { #1
-  console.log('El servidor está funcionando en el puerto 7777'); #1
+// O(1)
+app.listen(7777, () => {
+  console.log('El servidor está funcionando en el puerto 7777');
 });
-
-#En general, el código proporcionado tiene una complejidad constante para la mayoría de las operaciones, lo que significa que el tiempo de ejecución y el uso de recursos no aumentan a medida que los datos de entrada crecen.
+//La mayoría de las operaciones en el código tienen una complejidad constante O(1), lo que significa que su tiempo de ejecución no depende del tamaño de la entrada.
