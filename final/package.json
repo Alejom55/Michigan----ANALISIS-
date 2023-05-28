@@ -9,3 +9,4 @@
     "on-finished": "^2.4.1"
   }
 }
+//La notación Big O se utiliza para analizar la complejidad de los algoritmos en función del tamaño de entrada. Por lo tanto, solo se puede aplicar a algoritmos y fragmentos de código que realizan operaciones y manipulaciones de datos. 
